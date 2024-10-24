@@ -78,7 +78,13 @@ func TestOstreeresolveRef(t *testing.T) {
 			{srvConf.Srv.URL, "valid/ostree/ref"}: goodRef,
 		}
 		for in, expOut := range validCases {
-			out, err := resolveRef(in.location, in.ref, srvConf.RHSM, srvConf.Subs, &mTLSSrv.CAPath)
+			out, err := resolveRef(SourceSpec{
+				in.location,
+				in.ref,
+				srvConf.RHSM,
+				&MTLS{mTLSSrv.CAPath, mTLSSrv.ClientCrtPath, mTLSSrv.ClientKeyPath},
+				"",
+			})
 			assert.NoError(t, err)
 			assert.Equal(t, expOut, out)
 		}
@@ -91,7 +97,13 @@ func TestOstreeresolveRef(t *testing.T) {
 			{srvConf.Srv.URL, "get_bad_ref"}:        fmt.Sprintf("ostree repository \"%s/refs/heads/get_bad_ref\" returned invalid reference", srvConf.Srv.URL),
 		}
 		for in, expMsg := range errCases {
-			_, err := resolveRef(in.location, in.ref, srvConf.RHSM, srvConf.Subs, &mTLSSrv.CAPath)
+			_, err := resolveRef(SourceSpec{
+				in.location,
+				in.ref,
+				srvConf.RHSM,
+				&MTLS{mTLSSrv.CAPath, mTLSSrv.ClientCrtPath, mTLSSrv.ClientKeyPath},
+				"",
+			})
 			assert.EqualError(t, err, expMsg)
 		}
 	}

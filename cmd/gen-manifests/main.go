@@ -388,7 +388,7 @@ func makeManifestJob(
 			Config:       bc,
 		}
 		if cs != nil {
-			err = cs.recordManifestChecksum(mf, depsolvedSets, containerSpecs, commitSpecs, flatpakSpecs, request, filename, metadata)
+			err = cs.recordManifestChecksum(mf, depsolvedSets, containerSpecs, commitSpecs, flatpakSpecs, request, archName, filename, metadata)
 		} else {
 			fpath := filepath.Join(path, filename)
 			fp, createErr := os.Create(fpath)

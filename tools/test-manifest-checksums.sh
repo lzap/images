@@ -10,7 +10,7 @@ N="${1:-10}"
 BASE="/tmp/test-manifest-checksums"
 BIN="/tmp/test-manifest-checksums-bin"
 
-export OSBUILD_TESTING_RNG_SEED=0
+export OSBUILD_TESTING_RNG_SEED=1
 export IMAGE_BUILDER_EXPERIMENTAL=gen-manifest-mock-bpfile-uris
 
 cd "$(git rev-parse --show-toplevel)"

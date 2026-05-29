@@ -768,6 +768,7 @@
       - "uuid"
       - "WALinuxAgent"
       - "yum-utils"
+      - "vim-ennahced"
     exclude:
       - "aic94xx-firmware"
       - "alsa-firmware"
